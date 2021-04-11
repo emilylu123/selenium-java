@@ -83,7 +83,8 @@ public class EmilySeleniumTest {
 	public void testThanksPage(){
 		// driver.get("https://formspree.io/thanks?language=zh");
 		// select return message in the forwarded page
-		element = driver.findElement(By.xpath("//h1/following-sibling::p"));
+		// element = driver.findElement(By.xpath("//h1/following-sibling::p"));
+		element = driver.findElement(By.xpath("//div[@class='site-frame']//p"));
 		System.out.println(element.toString());
 
 		// check successful message
