@@ -11,12 +11,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class YoutubeSearchTest {
-	// private String searchKey = "lofi hiphop";
-	private String searchKey = "music 2021";
-	private WebElement element;
 	private WebDriver driver;
 
 	@BeforeClass
@@ -27,7 +23,7 @@ public class YoutubeSearchTest {
 	@Before
 	public void setupTest() {
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@Test
@@ -45,7 +41,9 @@ public class YoutubeSearchTest {
 		assertEquals("YouTube", driver.getTitle());
 
 		// enter search keywords in the inputs
-		element = driver.findElement(By.id("search"));
+		WebElement element = driver.findElement(By.id("search"));
+		// private String searchKey = "lofi hiphop";
+		String searchKey = "music 2021";
 		element.sendKeys(searchKey);
 
 		// enter search result
@@ -54,7 +52,7 @@ public class YoutubeSearchTest {
 		Thread.sleep(1500);
 
 		// explicit wait - to wait for the compose button to be click-able
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 15);
 		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("thumbnail")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='container" + "'][@class='style-scope ytd-search']")));
 		// click on the first video as soon as it is visible
@@ -67,9 +65,11 @@ public class YoutubeSearchTest {
 		if (isSkip) {
 			WebElement skipBtn = driver.findElement(By.className("ytp-ad-skip-button-container"));
 			skipBtn.click();
-			System.out.println("Ads skipped");
-		} else System.out.println("No ads to skip");
-		Thread.sleep(10000);
-		driver.close();
+			System.out.println("Skipping Ads successful");
+		} else System.out.println("No Ads are able to skip");
+
+		// wait 5 secs and then quit session
+		Thread.sleep(5000);
+		driver.quit();
 	}
 }
