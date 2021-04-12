@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class EmilySeleniumTest {
+public class EmilyPortfolioTest {
 	private WebDriver driver;
 	private WebElement element;
 
@@ -36,16 +36,16 @@ public class EmilySeleniumTest {
 	}
 
 	@Test
-	public void emilyPortfolioTest(){
+	public void emilyPortfolioTest() throws InterruptedException {
 		// 2. Navigation
 		// driver.get("http://yingyao.codes/");
 		driver.navigate().to("https://emilylu123.github.io");
 
 		// Test Github Link
-		testLink();
+		testGithubLink();
 
 		// Test contact form
-		testContact();
+		testContactForm();
 
 		// Test thanks pages
 		testThanksPage();
@@ -53,25 +53,26 @@ public class EmilySeleniumTest {
 
 	@Test
 	// test Github link and go back
-	public void testLink(){
+	public void testGithubLink() throws InterruptedException {
 		// 3. Find element
 		element = driver.findElement(By.className("fa-github"));
 		// 4. check the state
 		assertTrue(element.isDisplayed());
 		// 5. take action
 		element.click();
+		Thread.sleep(3000);
 		driver.navigate().back();
 	}
 
 	@Test
 	// Fill in email and message and click submit btn
-	public void testContact(){
+	public void testContactForm() {
 		// Find, restore and act
 		WebElement inputEmail = driver.findElement(By.id("contact-email"));
 		inputEmail.sendKeys("test@gmail.com");
 
 		WebElement inputMessage = driver.findElement(By.name("message"));
-		inputMessage.sendKeys("Test: " + (int)(Math.random()*1000));
+		inputMessage.sendKeys("Test: " + (int) (Math.random() * 1000));
 
 		// submit contact form
 		WebElement btnSubmit = driver.findElement(By.id("btn-submit-form"));
@@ -80,7 +81,7 @@ public class EmilySeleniumTest {
 
 	@Test
 	// test confirmation page
-	public void testThanksPage(){
+	public void testThanksPage() {
 		// driver.get("https://formspree.io/thanks?language=zh");
 		// select return message in the forwarded page
 		// element = driver.findElement(By.xpath("//h1/following-sibling::p"));
