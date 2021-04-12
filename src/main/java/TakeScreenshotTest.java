@@ -31,7 +31,7 @@ public class TakeScreenshotTest {
 	@After
 	public void teardown() {
 		if (driver != null) {
-			driver.close();
+			driver.quit();
 		}
 	}
 

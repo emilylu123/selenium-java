@@ -31,7 +31,7 @@ public class EmilyPortfolioTest {
 	@After
 	public void teardown() {
 		if (driver != null) {
-			driver.close();
+			driver.quit();
 		}
 	}
 
@@ -60,7 +60,7 @@ public class EmilyPortfolioTest {
 		assertTrue(element.isDisplayed());
 		// 5. take action
 		element.click();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		driver.navigate().back();
 	}
 
