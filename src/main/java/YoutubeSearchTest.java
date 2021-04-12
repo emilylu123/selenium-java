@@ -1,7 +1,9 @@
 import static org.junit.Assert.assertEquals;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -52,13 +54,11 @@ public class YoutubeSearchTest {
 		Thread.sleep(1500);
 
 		// explicit wait - to wait for the compose button to be click-able
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("thumbnail")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='container" +
-				"'][@class='style-scope ytd-search']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='container" + "'][@class='style-scope ytd-search']")));
 		// click on the first video as soon as it is visible
-		WebElement container = driver.findElement(By.xpath("//div[@id='container" +
-				"'][@class='style-scope ytd-search']")) ;
+		WebElement container = driver.findElement(By.xpath("//div[@id='container" + "'][@class='style-scope ytd-search']"));
 		List<WebElement> elements = container.findElements(By.id("thumbnail"));
 		elements.get(3).click();
 
